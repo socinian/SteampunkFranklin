@@ -6,6 +6,73 @@ var franklinQuotes = [];
 var categoryInDOM = [];
 var booksByCategory = {};
 var appendRequired = true;
+var fundraisers =
+    [
+        {
+            'promo_title': 'We are delighted to accept suggestions for improving this website. First priority is given to pull requests to our public repository. Please add relevant code comments that beginning high school students would understand.',
+            'promo_image': 'repo-image.png',
+            'promo_link': '//github.com/Santa-Susana-High-School/SteampunkFranklin',
+            'promo_button': 'Pull Requests',
+            'promo_class': 'suggestions'
+        },
+        {
+            'promo_title': 'Do you have a favorite book in this library? Is it best in its category? Help us push it higher in the sort order. Let us know!',
+            'promo_image': 'survey-icon.png',
+            'promo_link': '//goo.gl/forms/CbXwKRlFDT',
+            'promo_button': 'Online Form',
+            'promo_class': 'suggestions'
+        },
+        {
+            'promo_title': 'Do you have more relevant Benjamin Franklin quotes you would like to add? Let us know!',
+            'promo_image': 'survey-icon.png',
+            'promo_link': '//goo.gl/forms/CbXwKRlFDT',
+            'promo_button': 'Online Form',
+            'promo_class': 'suggestions'
+        },
+        {
+            'promo_title': 'Do you have a story you would like to tell about your experiences with one or more of these books?',
+            'promo_image': 'survey-icon.png',
+            'promo_link': '//goo.gl/forms/CbXwKRlFDT',
+            'promo_button': 'Online Form',
+            'promo_class': 'suggestions'
+        },
+        {
+            'promo_title': 'Help us buy a year of Adobe CC so students can continue this project. Your donation goes towards covering our $2,800 annual fee.',
+            'promo_link': '//gofund.me/steampunk',
+            'promo_image': 'creative-cloud-fundraiser.png',
+            'promo_button': 'Donate',
+            'promo_class': 'sshs-donations'
+        },
+        {
+            'promo_title': 'Help engineering and web dev students work on a "project that matters". Help students create website to host discussion abut Thorium powered under water concrete submarines for electric power generation, fresh water distillation, and hydrogen production.',
+            'promo_link': '//electrickraken.com',
+            'promo_image': 'electrickraken-proj.png',
+            'promo_class': 'sshs-thorium'
+        },
+        {
+            'promo_title': 'Help students build a 3D web map of possible educational career and anticipated needed business career futures for each other to explore and role play.',
+            'promo_link': '//futureuu.santasusana.org',
+            'promo_image': 'futureuu.png',
+            'promo_button': 'Donate',
+            'promo_class': 'sshs-donations'
+        },
+        {
+            'promo_title': 'We are delighted to credit our digital arts students with the "Steampunk Franklin" designs found on this website. For internship offers, please contact our school\'s career center.',
+            'promo_image': 'digital-arts-students-credit.png',
+            'promo_button': 'Meet our students',
+            'promo_class': 'art-students'
+        },
+        {
+            'promo_title': 'We are delighted to credit our webmaster students with the design of this website. For internship offers, please contact our school\'s career center.',
+            'promo_image': 'webmaster-students-credit.png',
+            'promo_button': 'Meet our students',
+            'promo_class': 'web-students'
+        }
+    ];
+
+promo_classes = fundraisers.map(function(aFundraiser) {
+    return aFundraiser.promo_class;
+});
 
 function loadJSON(jsonURI, callback) {
     var xobj = new XMLHttpRequest();
@@ -87,7 +154,7 @@ var updateDOMwithNavigation = function (categoryData, categorySelected, bookList
     var actualCategory = categorySelected.substr(1);
     var containerDiv = $('#Container');
 
-    if (!categoryData[actualCategory] ||
+    if (!categoryData[actualCategory]  ||
         actualCategory === "life-hacks" ||
         categoryInDOM.indexOf(actualCategory) >= 0) {
         if (callback)
@@ -136,69 +203,6 @@ var updateDOMwithNavigation = function (categoryData, categorySelected, bookList
 
 var updateDOMwithFundraisers = function (callback) {
     var data_order_counter = 9950;
-    var fundraisers =
-        [
-            {
-                'promo_title': 'We are delighted to accept suggestions for improving this website. First priority is given to pull requests to our public repository. Please add relevant code comments that beginning high school students would understand.',
-                'promo_image': 'repo-image.png',
-                'promo_link': '//github.com/Santa-Susana-High-School/SteampunkFranklin',
-                'promo_button': 'Pull Requests',
-                'promo_class': 'suggestions'
-            },
-            {
-                'promo_title': 'Do you have a favorite book in this library? Is it best in its category? Help us push it higher in the sort order. Let us know!',
-                'promo_image': 'survey-icon.png',
-                'promo_link': '//goo.gl/forms/CbXwKRlFDT',
-                'promo_button': 'Online Form',
-                'promo_class': 'suggestions'
-            },
-            {
-                'promo_title': 'Do you have more relevant Benjamin Franklin quotes you would like to add? Let us know!',
-                'promo_image': 'survey-icon.png',
-                'promo_link': '//goo.gl/forms/CbXwKRlFDT',
-                'promo_button': 'Online Form',
-                'promo_class': 'suggestions'
-            },
-            {
-                'promo_title': 'Do you have a story you would like to tell about your experiences with one or more of these books?',
-                'promo_image': 'survey-icon.png',
-                'promo_link': '//goo.gl/forms/CbXwKRlFDT',
-                'promo_button': 'Online Form',
-                'promo_class': 'suggestions'
-            },
-            {
-                'promo_title': 'Help us buy a year of Adobe CC so students can continue this project. Your donation goes towards covering our $2,800 annual fee.',
-                'promo_link': '//gofund.me/steampunk',
-                'promo_image': 'creative-cloud-fundraiser.png',
-                'promo_button': 'Donate',
-                'promo_class': 'sshs-donations'
-            },
-            {
-                'promo_title': 'Help engineering and web dev students work on a "project that matters". Help students create website to host discussion abut Thorium powered under water concrete submarines for electric power generation, fresh water distillation, and hydrogen production.',
-                'promo_link': '//electrickraken.com',
-                'promo_image': 'electrickraken-proj.png',
-                'promo_class': 'sshs-thorium'
-            },
-            {
-                'promo_title': 'Help students build a 3D web map of possible educational career and anticipated needed business career futures for each other to explore and role play.',
-                'promo_link': '//futureuu.com',
-                'promo_image': 'futureuu.png',
-                'promo_button': 'Donate',
-                'promo_class': 'sshs-donations'
-            },
-            {
-                'promo_title': 'We are delighted to credit our digital arts students with the "Steampunk Franklin" designs found on this website. For internship offers, please contact our school\'s career center.',
-                'promo_image': 'digital-arts-students-credit.png',
-                'promo_button': 'Meet our students',
-                'promo_class': 'art-students'
-            },
-            {
-                'promo_title': 'We are delighted to credit our webmaster students with the design of this website. For internship offers, please contact our school\'s career center.',
-                'promo_image': 'webmaster-students-credit.png',
-                'promo_button': 'Meet our students',
-                'promo_class': 'web-students'
-            }
-        ];
     var containerDiv = $('#Container');
 
     tshirtOffer(data_order_counter++);
@@ -429,7 +433,7 @@ var findBooksByCategory = function (callback) {
 };
 
 // Instantiate MixItUp:
-var startMix = function (hashFound, callback) {
+var startMix = function (callback) {
     $('#Container').mixItUp({
         animation: {
             duration: 400,
@@ -452,6 +456,7 @@ var startMix = function (hashFound, callback) {
                         var actualFilter = futureState.activeFilter.split(",")[0];
                         var actualSort = futureState.activeSort;
                         var actualClass = actualFilter.substr(1);
+                        var nextFilter = futureState.activeFilter;
                         var stateObj;
 
                         if ([".mix", ".life-hacks"].indexOf(actualFilter) < 0) {
@@ -462,12 +467,26 @@ var startMix = function (hashFound, callback) {
                             stateObj = {index: actualClass};
                             history.pushState(stateObj, actualClass, "index.html#" + actualClass);
                         } else {
-                            stateObj = {index: ""};
-                            history.pushState(stateObj, actualClass, "index.html");
+                            var hashToken = window.location.hash.substr(1);
+                            if (window.location.hash > "" &&
+                                (booksByCategory[hashToken] || promo_classes.indexOf(hashToken) > 0)) {
+                                actualClass = hashToken;
+                                actualFilter = "." + actualClass;
+                                nextFilter += "," + actualFilter;
+                                nextFilter = nextFilter.replace(".life-hacks,", "");
+                                if (promo_classes.indexOf(hashToken) > 0) {
+                                    nextFilter = actualFilter;
+                                }
+                                updateDOMwithBooks(booksData, franklinQuotes, actualClass);
+                                updateDOMwithNavigation(categoryData, "." + actualClass, booksData);
+                            } else {
+                                stateObj = {index: ""};
+                                history.pushState(stateObj, actualClass, "index.html");
+                            }
                         }
                         appendRequired = false;
                         $('#Container').mixItUp('multiMix', {
-                            filter: futureState.activeFilter,
+                            filter: nextFilter,
                             sort: actualSort
                         });
                     }
@@ -483,8 +502,6 @@ var startMix = function (hashFound, callback) {
             }
         }
     });
-    if (callback)
-        callback(hashFound);
 };
 
 var appStart = function () {
@@ -497,15 +514,8 @@ var appStart = function () {
                 findBooksByCategory(function () {
                     updateDOMwithFundraisers(function () {
                         updateDOMwithStudents(function () {
-                            startMix(window.location.hash,
-                                function (hashFound) {
-                                    if (hashFound > "") {
-                                        var actualFilter = hashFound.substr(1);
-                                        updateDOMwithBooks(booksData, franklinQuotes, actualFilter);
-                                        updateDOMwithNavigation(categoryData, "." + actualFilter, booksData);
-                                    }
-                                }
-                            );
+                            appendRequired = true;
+                            startMix();
                         });
                     });
                 });
